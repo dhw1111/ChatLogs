@@ -1,0 +1,163 @@
+name: ChatLogs
+label:
+  zh: 聊天日志插件
+  en: Chat Logs Plugin
+version: 1.0.0
+author: dhw
+email: dhw261011@gmail.com
+repository: https://your.repo.url/ChatLogs
+main: main.py
+description:
+  zh: 支持多平台消息日志记录到 Elasticsearch，支持插件和功能级别热更新开关。
+  en: Supports logging messages from multiple adapters to Elasticsearch, with plugin and feature-level hot switches.
+icon: icon.png
+homepage: https://your.repo.url/ChatLogs
+license: MIT
+categories:
+  - 日志
+  - 监控
+  - Logging
+  - Monitoring
+dependencies:
+  - elasticsearch>=7.0.0,<10.0.0
+  - PyYAML>=5.0.0,<7.0.0
+contributors:
+  - name: dhw
+    email: dhw261011@gmail.com
+maintainers:
+  - name: dhw
+    email: dhw261011@gmail.com
+config:
+  - name: storage_type
+    type: select
+    default: es
+    options:
+      - name: es
+        label:
+          zh: Elasticsearch
+          en: Elasticsearch
+      - name: mysql
+        label:
+          zh: MySQL
+          en: MySQL
+    label:
+      zh: 存储类型
+      en: Storage Type
+  - name: lark_log_enabled
+    type: boolean
+    default: true
+    label:
+      zh: 记录飞书消息
+      en: Log Lark Messages
+  - name: wechatpad_log_enabled
+    type: boolean
+    default: true
+    label:
+      zh: 记录微信消息
+      en: Log WeChatPad Messages
+  - name: dingtalk_log_enabled
+    type: boolean
+    default: true
+    label:
+      zh: 记录钉钉消息
+      en: Log DingTalk Messages
+  - name: slack_log_enabled
+    type: boolean
+    default: true
+    label:
+      zh: 记录Slack消息
+      en: Log Slack Messages
+  - name: discord_log_enabled
+    type: boolean
+    default: true
+    label:
+      zh: 记录Discord消息
+      en: Log Discord Messages
+  - name: es_host
+    type: string
+    default: localhost
+    label:
+      zh: ES主机
+      en: ES Host
+    show_if:
+      storage_type: es
+  - name: es_port
+    type: integer
+    default: 9200
+    label:
+      zh: ES端口
+      en: ES Port
+    show_if:
+      storage_type: es
+  - name: es_index
+    type: string
+    default: chatlogs
+    label:
+      zh: ES索引
+      en: ES Index
+    show_if:
+      storage_type: es
+  - name: es_username
+    type: string
+    label:
+      zh: ES用户名
+      en: ES Username
+    show_if:
+      storage_type: es
+  - name: es_password
+    type: string
+    label:
+      zh: ES密码
+      en: ES Password
+    show_if:
+      storage_type: es
+  - name: es_scheme
+    type: string
+    default: http
+    label:
+      zh: ES协议
+      en: ES Scheme
+    show_if:
+      storage_type: es
+  - name: mysql_host
+    type: string
+    default: localhost
+    label:
+      zh: MySQL主机
+      en: MySQL Host
+    show_if:
+      storage_type: mysql
+  - name: mysql_port
+    type: integer
+    default: 3306
+    label:
+      zh: MySQL端口
+      en: MySQL Port
+    show_if:
+      storage_type: mysql
+  - name: mysql_db
+    type: string
+    default: chatlogs
+    label:
+      zh: MySQL数据库
+      en: MySQL Database
+    show_if:
+      storage_type: mysql
+  - name: mysql_user
+    type: string
+    label:
+      zh: MySQL用户名
+      en: MySQL User
+    show_if:
+      storage_type: mysql
+  - name: mysql_password
+    type: string
+    label:
+      zh: MySQL密码
+      en: MySQL Password
+    show_if:
+      storage_type: mysql
+execution:
+  python:
+    path: main.py
+    attr: ChatLogsPlugin 
